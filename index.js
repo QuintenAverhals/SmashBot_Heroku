@@ -46,7 +46,7 @@ textList.push("~~Striketrough~~");
 // When the bot starts up, log it to the console.
 client.on("ready", () => {
 	console.log("I\'m Online");
-	client.user.setGame(prefix + "help");
+	client.user.setActivity(prefix + "help");
 });
 
 // When a User joins the server for the first time.
