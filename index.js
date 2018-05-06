@@ -80,6 +80,22 @@ client.on('guildMemberAdd', member => {
 	console.log("New user joined!");
 });
 
+//When a person leaves the server.
+client.on('guildMemberRemove', member => {
+	const channel = member.guild.channels.find('name', 'server_log');
+	var userLeaveString ="__**User Left**__\n";
+	var tempString = "";
+
+	tempString = "**Name:** " + member + "\n";
+	userLeaveString += tempString;
+	tempString = "**ID:** " + member.id + "\n";
+	userLeaveString += tempString;
+
+	channel.send(userLeaveString);
+
+	console.log("User left!");
+});
+
 // Commands.
 client.on("message", message => {
 
