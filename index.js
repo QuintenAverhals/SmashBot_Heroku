@@ -389,7 +389,13 @@ client.on("message", message => {
 			var cmd = message.content.substr(0,message.content.indexOf(' '));
 			var arg = message.content.substr(message.content.indexOf(' ')+1);
 			if (cmd === (prefix + "searchVid")) {
-				console.log("test");
+				request({
+				uri: `https://www.googleapis.com/youtube/v3/search/?part=snippet&channelId=UCfYQJa2qGuCy6z87UBHhA8A&order=date&type=video&key=${process.env.API_KEY}&q=${arg}`,
+				json:true }, (err, res, body) => {
+				if (err) return console.log(err);
+				message.channel.send("The view count is:\n**" + body.items[0].snippet.title + "**");
+				console.log("Command 'searchVid' executed!")
+				});
 			}
 			break;
 	}
