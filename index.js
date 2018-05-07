@@ -386,7 +386,7 @@ client.on("message", message => {
 			console.log("Command 'store', 'shop', 'merch' executed!");
 			break;
 		default:
-			var command = message.content.trim().split("/ +/g");
+			var command = message.content.trim().split(/ +/g);
 			if (command[0] == (prefix + "searchVid") {
 			    request({
 				uri: `https://www.googleapis.com/youtube/v3/search/?part=snippet&channelId=UCfYQJa2qGuCy6z87UBHhA8A&order=date&type=video&key=${process.env.API_KEY}&q=${command[1]}`,
