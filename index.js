@@ -394,8 +394,11 @@ client.on("message", message => {
 				json:true }, (err, res, body) => {
 				if (err) return console.log(err);
 				if (body.items[0] !== undefined) {
-					message.channel.send("The view count is:\n**" + body.items[0].snippet.title + "**");
+					message.channel.send("**" + body.items[0].snippet.title + "**\nhttps://www.youtube.com/watch?v=" + body.items[0].id.videoId);
 					console.log("Command 'searchVid' executed!")
+				}
+				else {
+					message.channel.send("The video could not be found.");
 				}
 				});
 			}
