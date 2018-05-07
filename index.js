@@ -386,10 +386,6 @@ client.on("message", message => {
 			console.log("Command 'store', 'shop', 'merch' executed!");
 			break;
 		default:
-			var command = message.content.trim().split(/ +/g);
-			if (command[0] == (prefix + "searchVid") {
-			    message.reply("hi");
-			}
 			break;
 	}
 });
