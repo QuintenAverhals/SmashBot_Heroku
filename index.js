@@ -36,6 +36,7 @@ commandList.push([prefix + "twitch", "Link to Twitch channel."]);
 commandList.push([prefix + "store", "Link to Merch store."]);
 commandList.push([prefix + "shop", "Link to Merch store."]);
 commandList.push([prefix + "merch", "Link to Merch store."]);
+commandList.push([prefix + "searchVid 'Name of video'", "Search a video or SmashLook."]);
 
 // Text-Effects
 textList.push("*Italic*");
