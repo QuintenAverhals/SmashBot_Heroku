@@ -386,6 +386,7 @@ client.on("message", message => {
 			console.log("Command 'store', 'shop', 'merch' executed!");
 			break;
 		default:
+			console.log("hi");
 			break;
 	}
 });
