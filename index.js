@@ -388,8 +388,9 @@ client.on("message", message => {
 		default:
 			var cmd = message.content.substr(0,message.content.indexOf(' '));
 			var arg = message.content.substr(message.content.indexOf(' ')+1);
-			console.log(cmd);
-			console.log(arg);
+			if (cmd === (prefix + "searchVid")) {
+				console.log("test");
+			}
 			break;
 	}
 });
