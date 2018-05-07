@@ -386,7 +386,10 @@ client.on("message", message => {
 			console.log("Command 'store', 'shop', 'merch' executed!");
 			break;
 		default:
-			console.log("hi");
+			var cmd = message.content.substr(0,str.indexOf(' '));
+			var arg = message.content.substr(str.indexOf(' ')+1);
+			console.log(cmd);
+			console.log(arg);
 			break;
 	}
 });
