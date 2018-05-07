@@ -388,13 +388,7 @@ client.on("message", message => {
 		default:
 			var command = message.content.trim().split(/ +/g);
 			if (command[0] == (prefix + "searchVid") {
-			    request({
-				uri: `https://www.googleapis.com/youtube/v3/search/?part=snippet&channelId=UCfYQJa2qGuCy6z87UBHhA8A&order=date&type=video&key=${process.env.API_KEY}&q=${command[1]}`,
-				json:true }, (err, res, body) => {
-				if (err) return console.log(err);
-				message.channel.send("The view count is:\n**" + body.items[0].snippet.title + "**");
-				console.log("Command 'viewcount' executed!")
-				});
+			    message.reply("hi");
 			}
 			break;
 	}
