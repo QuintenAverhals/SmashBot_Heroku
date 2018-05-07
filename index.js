@@ -388,7 +388,6 @@ client.on("message", message => {
 		default:
 			var command = message.content.trim().split("/ +/g");
 			if (command[0] == (prefix + "searchVid") {
-			    https://www.googleapis.com/youtube/v3/search/?part=snippet&channelId=UCfYQJa2qGuCy6z87UBHhA8A&order=date&type=video&q=dream%20daddy&key=AIzaSyCmaPTnY9hcwAz8G6dJIJ1gWbv1_4fPa24
 			    request({
 				uri: `https://www.googleapis.com/youtube/v3/search/?part=snippet&channelId=UCfYQJa2qGuCy6z87UBHhA8A&order=date&type=video&key=${process.env.API_KEY}&q=${command[1]}`,
 				json:true }, (err, res, body) => {
