@@ -71,9 +71,9 @@ client.on('guildMemberAdd', member => {
 	var newUserString ="__**New User Joined**__\n";
 	var tempString = "";
 
-	tempString = "**Name:** " + member.username + "\n";
+	tempString = "**Name:** " + member.user.username + "\n";
 	newUserString += tempString;
-	tempString = "**ID:** " + member.discriminator + "\n";
+	tempString = "**ID:** " + member.user.discriminator + "\n";
 	newUserString += tempString;
 
 	channel.send(newUserString);
