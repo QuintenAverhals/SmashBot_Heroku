@@ -71,12 +71,19 @@ client.on('guildMemberAdd', member => {
 	var newUserString ="__**New User Joined**__\n";
 	var tempString = "";
 
-	tempString = "**Name:** " + member.user.username + "\n";
+	tempString = "**Name:** " + member + "\n";
 	newUserString += tempString;
-	tempString = "**ID:** " + member.user.discriminator + "\n";
+	tempString = "**ID:** " + member.id + "\n";
 	newUserString += tempString;
 
 	channel.send(newUserString);
+
+	const embed = new Discord.RichEmbed();
+	embed.setColor('80f31f');
+	embed.setAuthor(member.user.username + "#" + member.user.discriminator, member.user.avatarURL);
+	embed.setFooter('User joined');
+	embed.setTimestamp();
+	channel.send(embed);
 
 	console.log("New user joined!");
 });
