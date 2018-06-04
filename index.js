@@ -244,39 +244,39 @@ client.on("message", message => {
 			// 	}
 			// }
 
-			const embedStaff = new Discord.RichEmbed();
-			embedStaff.setAuthor('Staff');
-
-			var staffMembers = new Map();
-			var staff = new Array();
-
-			for (var i = 0; i < staffRoles.length; i++) {
-				staff.push(new Set());
-				console.log(staffRoles[i]);
-				var items = message.guild.roles.find('name', staffRoles[i]);
-				if (items.length > 0) {
-					items = items.members;
-				}
-				for (var item in items) {
-					staffMembers.set(item.displayName, staffRoles[i]);
-				}
-			}
-
-			staffMembers.forEach(function(value, key) {
-				for (var i = 0; i < staffRoles.length; i++) {
-					if (value == staffRoles[i]) {
-						staff[i].add(key);
-					}
-				}
-			});
-
-			for (var i = staff.length-1; i >= 0; i--) {
-				for (item of staff[i]) {
-					embedStaff.addField(staffRoles[i], item);
-				}
-			}
-
-			message.channel.send(embedStaff);
+			// const embedStaff = new Discord.RichEmbed();
+			// embedStaff.setAuthor('Staff');
+			//
+			// var staffMembers = new Map();
+			// var staff = new Array();
+			//
+			// for (var i = 0; i < staffRoles.length; i++) {
+			// 	staff.push(new Set());
+			// 	console.log(staffRoles[i]);
+			// 	var items = message.guild.roles.find('name', staffRoles[i]);
+			// 	if (items.length > 0) {
+			// 		items = items.members;
+			// 	}
+			// 	for (var item in items) {
+			// 		staffMembers.set(item.displayName, staffRoles[i]);
+			// 	}
+			// }
+			//
+			// staffMembers.forEach(function(value, key) {
+			// 	for (var i = 0; i < staffRoles.length; i++) {
+			// 		if (value == staffRoles[i]) {
+			// 			staff[i].add(key);
+			// 		}
+			// 	}
+			// });
+			//
+			// for (var i = staff.length-1; i >= 0; i--) {
+			// 	for (item of staff[i]) {
+			// 		embedStaff.addField(staffRoles[i], item);
+			// 	}
+			// }
+			//
+			// message.channel.send(embedStaff);
 
 			// message.channel.send(staffString);
 			console.log("Command 'staff' executed!");
