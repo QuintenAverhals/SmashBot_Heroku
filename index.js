@@ -69,12 +69,12 @@ client.on('guildMemberAdd', member => {
 	member.addRole(member.guild.roles.find('name', defaultRole));
 
 	const channel = member.guild.channels.find('name', 'server_log');
-	const embed = new Discord.RichEmbed();
-	embed.setColor('80f31f');
-	embed.setAuthor(member.user.username + "#" + member.user.discriminator + " (" + member.user.id + ")", member.user.displayAvatarURL);
-	embed.setFooter('User joined');
-	embed.setTimestamp();
-	channel.send(embed);
+	const embedNewUser = new Discord.RichEmbed();
+	embedNewUser.setColor('80f31f');
+	embedNewUser.setAuthor(member.user.username + "#" + member.user.discriminator + " (" + member.user.id + ")", member.user.displayAvatarURL);
+	embedNewUser.setFooter('User joined');
+	embedNewUser.setTimestamp();
+	channel.send(embedNewUser);
 
 	console.log("New user joined!");
 });
@@ -82,12 +82,12 @@ client.on('guildMemberAdd', member => {
 //When a person leaves the server.
 client.on('guildMemberRemove', member => {
 	const channel = member.guild.channels.find('name', 'server_log');
-	const embed = new Discord.RichEmbed();
-	embed.setColor('ff2605');
-	embed.setAuthor(member.user.username + "#" + member.user.discriminator + " (" + member.user.id + ")", member.user.displayAvatarURL);
-	embed.setFooter('User left');
-	embed.setTimestamp();
-	channel.send(embed);
+	const embedLeaveUser = new Discord.RichEmbed();
+	embedLeaveUser.setColor('ff2605');
+	embedLeaveUser.setAuthor(member.user.username + "#" + member.user.discriminator + " (" + member.user.id + ")", member.user.displayAvatarURL);
+	embedLeaveUser.setFooter('User left');
+	embedLeaveUser.setTimestamp();
+	channel.send(embedLeaveUser);
 
 	console.log("User left!");
 });
@@ -162,22 +162,14 @@ client.on("message", message => {
 	// All custom commands
 	switch (message.content) {
 		case (prefix + "help"):
-			var commandString = "__**Commands:**__\n";
-			var tempString = "";
+			const embedHelp = new Discord.RichEmbed();
+			embedHelp.setAuthor('Commands');
 
 			for (var i = 0; i < commandList.length; i++) {
-				tempString = "**" + commandList[i][0] + "**   " + commandList[i][1] + "\n";
-				commandString += tempString;
-			}
-			message.channel.send(commandString);
-
-			const embed = new Discord.RichEmbed();
-			embed.setAuthor('Commands');
-
-			for (var i = 0; i < commandList.length; i++) {
-				embed.addField(commandList[i][0], commandList[i][1]);
+				embedHelp.addField(commandList[i][0], commandList[i][1]);
 			}
 
+			message.channel.send(embedHelp);
 			console.log("Command 'help' executed!");
 			break;
 
@@ -252,8 +244,8 @@ client.on("message", message => {
 			// 	}
 			// }
 
-			const embed2 = new Discord.RichEmbed();
-			embed2.setAuthor('Staff');
+			const embedStaff = new Discord.RichEmbed();
+			embedStaff.setAuthor('Staff');
 
 			var staffMembers = new Map();
 			var staff = new Array();
@@ -276,100 +268,13 @@ client.on("message", message => {
 
 			for (var i = staff.length-1; i >= 0; i--) {
 				for (item of staff[i]) {
-					embed2.addField(staffRoles[i], item);
+					embedStaff.addField(staffRoles[i], item);
 				}
 			}
 
-			message.channel.send(embed2);
+			message.channel.send(embedStaff);
 
 			// message.channel.send(staffString);
-			console.log("Command 'staff' executed!");
-			break;
-
-		case (prefix + "help"):
-			var commandString = "__**Commands:**__\n";
-			var tempString = "";
-
-			for (var i = 0; i < commandList.length; i++) {
-				tempString = "**" + commandList[i][0] + "**   " + commandList[i][1] + "\n";
-				commandString += tempString;
-			}
-			message.channel.send(commandString);
-			console.log("Command 'help' executed!");
-			break;
-
-		case (prefix + "rules"):
-			var rulesString = "__**Rules:**__\n";
-			var tempString = "";
-
-			for (var i = 0; i < rulesList.length; i++) {
-				tempString = (i+1) + ") " + rulesList[i] + "\n";
-				rulesString += tempString;
-			}
-			message.channel.send(rulesString);
-			console.log("Command 'rules' executed!");
-			break;
-
-		case (prefix + "subcount"):
-			request({
-			uri: `https://www.googleapis.com/youtube/v3/channels/?forUsername=${ytUser}&part=statistics&key=${process.env.API_KEY}`,
-			json:true }, (err, res, body) => {
-			if (err) return console.log(err);
-			message.channel.send("The subscriber count is:\n**" + body.items[0].statistics.subscriberCount + "**");
-			console.log("Command 'subcount' executed!")
-			});
-			break;
-
-		case (prefix + "viewcount"):
-			request({
-			uri: `https://www.googleapis.com/youtube/v3/channels/?forUsername=${ytUser}&part=statistics&key=${process.env.API_KEY}`,
-			json:true }, (err, res, body) => {
-			if (err) return console.log(err);
-			message.channel.send("The view count is:\n**" + body.items[0].statistics.viewCount + "**");
-			console.log("Command 'viewcount' executed!")
-			});
-			break;
-
-		case (prefix + "membercount"):
-			message.channel.send("The member count is:\n**" + message.guild.memberCount + "**");
-			console.log("Command 'membercount' executed!");
-			break;
-
-		case (prefix + "texteffects"):
-			var textString = "__**Text-Effects**__\n";
-			var tempString = "```\n";
-
-			textString += tempString;
-			for (var i = 0; i < textList.length; i++) {
-				tempString = textList[i] + "\n";
-				textString += tempString;
-			}
-			textString += "```\n";
-			for (var i = 0; i < textList.length; i++) {
-				tempstring = textList[i] + "\n";
-				textString += tempstring;
-			}
-
-			message.channel.send(textString);
-			console.log("Command 'texteffects' executed!");
-			break;
-
-		case (prefix + "staff"):
-			var staffString = "__**Staff:**__\n";
-			var tempString = "";
-
-			for (var i = 0; i < staffRoles.length; i++) {
-
-				var staffMembers = message.guild.roles.find("name", staffRoles[i]).members;
-				var max = staffMembers.size;
-				for (var j = 0; j < max; j++) {
-					tempString = "**" + staffRoles[i] + "**: " + staffMembers.first().displayName + "\n";
-					staffMembers.delete(staffMembers.firstKey());
-					staffString += tempString;
-				}
-			}
-
-			message.channel.send(staffString);
 			console.log("Command 'staff' executed!");
 			break;
 
@@ -413,24 +318,24 @@ client.on("message", message => {
 			console.log("Command 'twitch' executed!");
 			break;
 		case (prefix + "links"):
-			const embed = new Discord.RichEmbed();
-			embed.setColor('e88317');
-			embed.setAuthor('SmashGaminG!! Links');
-			embed.setThumbnail('https://art.pixilart.com/cd8f72c899620a4.png');
-			embed.setFooter('Thumbnail made by Violet');
-			embed.addField('Youtube', 'https://www.youtube.com/user/SmashGaming999');
-			embed.addField('Twitch', 'https://www.twitch.tv/smashgamingfrazzz');
-			embed.addField('Patreon', 'https://www.patreon.com/smashgaming999');
-			embed.addField('Merch', 'https://www.redbubble.com/people/SmashGaminG/shop');
-			embed.addField('Humble partner', 'https://www.humblebundle.com/store?partner=smashgaming');
-			embed.addField('Youtube Sponsoring', 'https://goo.gl/qZYGxk');
-			embed.addField('Steam', 'http://steamcommunity.com/groups/SmashGmainG');
-			embed.addField('Twitter', 'https://twitter.com/Frazzz101');
-			embed.addField('Facebook', 'https://www.facebook.com/SmashGaming999/');
-			embed.addField('Instagram', 'https://www.instagram.com/smash_gaming_frazzz/');
-			embed.addField('Discord', 'https://discord.gg/zwEVdFE');
+			const embedLinks = new Discord.RichEmbed();
+			embedLinks.setColor('e88317');
+			embedLinks.setAuthor('SmashGaminG!! Links');
+			embedLinks.setThumbnail('https://art.pixilart.com/cd8f72c899620a4.png');
+			embedLinks.setFooter('Thumbnail made by Violet');
+			embedLinks.addField('Youtube', 'https://www.youtube.com/user/SmashGaming999');
+			embedLinks.addField('Twitch', 'https://www.twitch.tv/smashgamingfrazzz');
+			embedLinks.addField('Patreon', 'https://www.patreon.com/smashgaming999');
+			embedLinks.addField('Merch', 'https://www.redbubble.com/people/SmashGaminG/shop');
+			embedLinks.addField('Humble partner', 'https://www.humblebundle.com/store?partner=smashgaming');
+			embedLinks.addField('Youtube Sponsoring', 'https://goo.gl/qZYGxk');
+			embedLinks.addField('Steam', 'http://steamcommunity.com/groups/SmashGmainG');
+			embedLinks.addField('Twitter', 'https://twitter.com/Frazzz101');
+			embedLinks.addField('Facebook', 'https://www.facebook.com/SmashGaming999/');
+			embedLinks.addField('Instagram', 'https://www.instagram.com/smash_gaming_frazzz/');
+			embedLinks.addField('Discord', 'https://discord.gg/zwEVdFE');
 
-			message.channel.send(embed);
+			message.channel.send(embedLinks);
 			break;
 
 		case (prefix + "store"):
