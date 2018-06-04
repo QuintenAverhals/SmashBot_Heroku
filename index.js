@@ -370,8 +370,26 @@ client.on("message", message => {
 			break;
 
 		case (prefix + "twitch"):
-			message.reply("Check out my Twitch on:\nhttp://www.twitch.tv/frazzz1");
+			message.reply("Check out my Twitch on:\nhttps://www.twitch.tv/smashgamingfrazzz");
 			console.log("Command 'twitch' executed!");
+			break;
+		case (prefix + "links"):
+			const embed = new Discord.RichEmbed();
+			embed.setColor('e88317');
+			embed.setAuthor('SmashGaminG!! Links');
+			embed.addField('Youtube', 'https://www.youtube.com/user/SmashGaming999');
+			embed.addField('Twitch', 'https://www.twitch.tv/smashgamingfrazzz');
+			embed.addField('Patreon', 'https://www.patreon.com/smashgaming999');
+			embed.addField('Merch', 'https://www.redbubble.com/people/SmashGaminG/shop');
+			embed.addField('Humble partner', 'https://www.humblebundle.com/store?partner=smashgaming');
+			embed.addField('Youtube Sponsoring', 'https://goo.gl/qZYGxk');
+			embed.addField('Steam', 'http://steamcommunity.com/groups/SmashGmainG');
+			embed.addField('Twitter', 'https://twitter.com/Frazzz101');
+			embed.addField('Facebook', 'https://www.facebook.com/SmashGaming999/');
+			embed.addField('Instagram', 'https://www.instagram.com/smash_gaming_frazzz/');
+			embed.addField('Discord', 'https://discord.gg/zwEVdFE');
+
+			message.channel.send(embed);
 			break;
 
 		case (prefix + "store"):
