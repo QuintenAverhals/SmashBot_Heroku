@@ -80,7 +80,7 @@ client.on('guildMemberAdd', member => {
 
 	const embed = new Discord.RichEmbed();
 	embed.setColor('80f31f');
-	embed.setAuthor(member.user.username + "#" + member.user.discriminator, member.user.displayAvatarURL);
+	embed.setAuthor(member.user.username + "#" + member.user.discriminator + " (" + member.user.id + ")", member.user.displayAvatarURL);
 	embed.setFooter('User joined');
 	embed.setTimestamp();
 	channel.send(embed);
@@ -103,7 +103,7 @@ client.on('guildMemberRemove', member => {
 
 	const embed = new Discord.RichEmbed();
 	embed.setColor('ff2605');
-	embed.setAuthor(member.user.username + "#" + member.user.discriminator, member.user.displayAvatarURL);
+	embed.setAuthor(member.user.username + "#" + member.user.discriminator + " (" + member.user.id + ")", member.user.displayAvatarURL);
 	embed.setFooter('User left');
 	embed.setTimestamp();
 	channel.send(embed);
