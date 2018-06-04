@@ -37,6 +37,7 @@ commandList.push([prefix + "store", "Link to Merch store."]);
 commandList.push([prefix + "shop", "Link to Merch store."]);
 commandList.push([prefix + "merch", "Link to Merch store."]);
 commandList.push([prefix + "searchVid 'Name of video'", "Search a video or SmashLook."]);
+commandList.push([prefix + "links", "Get all links."]);
 
 // Text-Effects
 textList.push("*Italic*");
@@ -169,6 +170,14 @@ client.on("message", message => {
 				commandString += tempString;
 			}
 			message.channel.send(commandString);
+
+			const embed = new Discord.RichEmbed();
+			embed.setAuthor('Commands');
+
+			for (var i = 0; i < commandList.length; i++) {
+				embed.addField(commandList[i][0], commandList[i][1]);
+			}
+
 			console.log("Command 'help' executed!");
 			break;
 
@@ -229,21 +238,51 @@ client.on("message", message => {
 			break;
 
 		case (prefix + "staff"):
-			var staffString = "__**Staff:**__\n";
-			var tempString = "";
+			// var staffString = "__**Staff:**__\n";
+			// var tempString = "";
+			//
+			// for (var i = 0; i < staffRoles.length; i++) {
+			//
+			// 	var staffMembers = message.guild.roles.find("name", staffRoles[i]).members;
+			// 	var max = staffMembers.size;
+			// 	for (var j = 0; j < max; j++) {
+			// 		tempString = "**" + staffRoles[i] + "**: " + staffMembers.first().displayName + "\n";
+			// 		staffMembers.delete(staffMembers.firstKey());
+			// 		staffString += tempString;
+			// 	}
+			// }
+
+			const embed = new Discord.RichEmbed();
+			embed.setAuthor('Staff');
+
+			var staffMembers = new Map();
+			var staff = new Array();
 
 			for (var i = 0; i < staffRoles.length; i++) {
-
-				var staffMembers = message.guild.roles.find("name", staffRoles[i]).members;
-				var max = staffMembers.size;
-				for (var j = 0; j < max; j++) {
-					tempString = "**" + staffRoles[i] + "**: " + staffMembers.first().displayName + "\n";
-					staffMembers.delete(staffMembers.firstKey());
-					staffString += tempString;
+				staff.push(new Set());
+				var items = message.guild.roles.find('name', staffRoles[i]).members;
+				for (var item in items) {
+					staffMembers.set(item.displayName, staffRoles[i]);
 				}
 			}
 
-			message.channel.send(staffString);
+			staffMembers.forEach(function(value, key) {
+				for (var i = 0; i < staffRoles.length; i++) {
+					if (value == staffRoles[i]) {
+						staff[i].add(key);
+					}
+				}
+			});
+
+			for (var i = staff.length-1; i >= 0; i--) {
+				for (item of staff[i]) {
+					embed.addField(staffRoles[i], item);
+				}
+			}
+
+			message.channel.send(embed);
+
+			// message.channel.send(staffString);
 			console.log("Command 'staff' executed!");
 			break;
 
