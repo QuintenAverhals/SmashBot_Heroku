@@ -252,8 +252,8 @@ client.on("message", message => {
 			// 	}
 			// }
 
-			const embed = new Discord.RichEmbed();
-			embed.setAuthor('Staff');
+			const embed2 = new Discord.RichEmbed();
+			embed2.setAuthor('Staff');
 
 			var staffMembers = new Map();
 			var staff = new Array();
@@ -276,11 +276,11 @@ client.on("message", message => {
 
 			for (var i = staff.length-1; i >= 0; i--) {
 				for (item of staff[i]) {
-					embed.addField(staffRoles[i], item);
+					embed2.addField(staffRoles[i], item);
 				}
 			}
 
-			message.channel.send(embed);
+			message.channel.send(embed2);
 
 			// message.channel.send(staffString);
 			console.log("Command 'staff' executed!");
