@@ -252,6 +252,7 @@ client.on("message", message => {
 
 			for (var i = 0; i < staffRoles.length; i++) {
 				staff.push(new Set());
+				console.log(staffRoles[i]);
 				var items = message.guild.roles.find('name', staffRoles[i]);
 				if (items.length > 0) {
 					items = items.members;
