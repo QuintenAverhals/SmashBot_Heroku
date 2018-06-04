@@ -252,7 +252,10 @@ client.on("message", message => {
 
 			for (var i = 0; i < staffRoles.length; i++) {
 				staff.push(new Set());
-				var items = message.guild.roles.find('name', staffRoles[i]).members;
+				var items = message.guild.roles.find('name', staffRoles[i]);
+				if (items.length > 0) {
+					items = items.members;
+				}
 				for (var item in items) {
 					staffMembers.set(item.displayName, staffRoles[i]);
 				}
