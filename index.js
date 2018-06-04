@@ -80,7 +80,7 @@ client.on('guildMemberAdd', member => {
 
 	const embed = new Discord.RichEmbed();
 	embed.setColor('80f31f');
-	embed.setAuthor(member.user.username + "#" + member.user.discriminator, member.user.avatarURL);
+	embed.setAuthor(member.user.username + "#" + member.user.discriminator, member.user.displayAvatarURL);
 	embed.setFooter('User joined');
 	embed.setTimestamp();
 	channel.send(embed);
