@@ -68,16 +68,6 @@ client.on('guildMemberAdd', member => {
 	member.addRole(member.guild.roles.find('name', defaultRole));
 
 	const channel = member.guild.channels.find('name', 'server_log');
-	var newUserString ="__**New User Joined**__\n";
-	var tempString = "";
-
-	tempString = "**Name:** " + member + "\n";
-	newUserString += tempString;
-	tempString = "**ID:** " + member.id + "\n";
-	newUserString += tempString;
-
-	channel.send(newUserString);
-
 	const embed = new Discord.RichEmbed();
 	embed.setColor('80f31f');
 	embed.setAuthor(member.user.username + "#" + member.user.discriminator + " (" + member.user.id + ")", member.user.displayAvatarURL);
@@ -91,16 +81,6 @@ client.on('guildMemberAdd', member => {
 //When a person leaves the server.
 client.on('guildMemberRemove', member => {
 	const channel = member.guild.channels.find('name', 'server_log');
-	var userLeaveString ="__**User Left**__\n";
-	var tempString = "";
-
-	tempString = "**Name:** " + member + "\n";
-	userLeaveString += tempString;
-	tempString = "**ID:** " + member.id + "\n";
-	userLeaveString += tempString;
-
-	channel.send(userLeaveString);
-
 	const embed = new Discord.RichEmbed();
 	embed.setColor('ff2605');
 	embed.setAuthor(member.user.username + "#" + member.user.discriminator + " (" + member.user.id + ")", member.user.displayAvatarURL);
