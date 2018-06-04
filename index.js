@@ -377,6 +377,8 @@ client.on("message", message => {
 			const embed = new Discord.RichEmbed();
 			embed.setColor('e88317');
 			embed.setAuthor('SmashGaminG!! Links');
+			embed.setThumbnail('https://art.pixilart.com/cd8f72c899620a4.png');
+			embed.setFooter('Thumbnail made by Violet');
 			embed.addField('Youtube', 'https://www.youtube.com/user/SmashGaming999');
 			embed.addField('Twitch', 'https://www.twitch.tv/smashgamingfrazzz');
 			embed.addField('Patreon', 'https://www.patreon.com/smashgaming999');
