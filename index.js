@@ -101,6 +101,13 @@ client.on('guildMemberRemove', member => {
 
 	channel.send(userLeaveString);
 
+	const embed = new Discord.RichEmbed();
+	embed.setColor('ff2605');
+	embed.setAuthor(member.user.username + "#" + member.user.discriminator, member.user.displayAvatarURL);
+	embed.setFooter('User left');
+	embed.setTimestamp();
+	channel.send(embed);
+
 	console.log("User left!");
 });
 
