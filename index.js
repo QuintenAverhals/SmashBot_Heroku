@@ -24,18 +24,7 @@ commandList.push([prefix + "subcount", "Show the subscriber amount from Youtube.
 commandList.push([prefix + "viewcount", "Shows the amount of views on Youtube."]);
 commandList.push([prefix + "membercount", "Show the member amount from Discord."]);
 commandList.push([prefix + "texteffects", "Shows the possible text effects."]);
-commandList.push([prefix + "staff", "Show the staff list."]);
 commandList.push([prefix + "memes", "Gives information about posting memes."]);
-commandList.push([prefix + "youtube", "Link to YouTube channel."]);
-commandList.push([prefix + "steam", "Link to Steam group."]);
-commandList.push([prefix + "twitter", "Link to Twitter profile."]);
-commandList.push([prefix + "patreon", "Link to Patreon page."]);
-commandList.push([prefix + "discord", "Link to Discord server."]);
-commandList.push([prefix + "facebook", "Link to Facebook page."]);
-commandList.push([prefix + "twitch", "Link to Twitch channel."]);
-commandList.push([prefix + "store", "Link to Merch store."]);
-commandList.push([prefix + "shop", "Link to Merch store."]);
-commandList.push([prefix + "merch", "Link to Merch store."]);
 commandList.push([prefix + "searchVid 'Name of video'", "Search a video or SmashLook."]);
 commandList.push([prefix + "links", "Get all links."]);
 
@@ -325,8 +314,6 @@ client.on("message", message => {
 			const embedLinks = new Discord.RichEmbed();
 			embedLinks.setColor('e88317');
 			embedLinks.setAuthor('SmashGaminG!! Links');
-			embedLinks.setThumbnail('https://art.pixilart.com/cd8f72c899620a4.png');
-			embedLinks.setFooter('Thumbnail made by Violet');
 			embedLinks.addField('Youtube', 'https://www.youtube.com/user/SmashGaming999');
 			embedLinks.addField('Twitch', 'https://www.twitch.tv/smashgamingfrazzz');
 			embedLinks.addField('Patreon', 'https://www.patreon.com/smashgaming999');
